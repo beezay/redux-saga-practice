@@ -15,6 +15,8 @@ const data = [
 const UserComponent = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
+  const loading = useSelector((state) => state.users.loading);
+  const errors = useSelector((state) => state.users.errors);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -22,8 +24,11 @@ const UserComponent = () => {
 
   return (
     <>
+      {loading && <p>LOADING...</p>}
       {users.length > 0 &&
+        !loading &&
         users.map((user) => <CardComponent user={user} key={user.id} />)}
+      {errors && !loading && <p>{errors}</p>}
     </>
   );
 };

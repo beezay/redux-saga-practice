@@ -3,7 +3,7 @@ import * as types from "../types";
 const initialState = {
   users: [],
   loading: false,
-  error: null,
+  errors: null,
 };
 
 export const users = (state = initialState, action) => {
@@ -24,7 +24,7 @@ export const users = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.message,
+        errors: action.message,
       };
     default:
       return state;
